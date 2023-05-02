@@ -1,30 +1,23 @@
 // import * as axios from 'axios';
 import { list } from "./storage"
 
-const axios = require('axios');
+const axios = require('axios').default;
 
 async function deviceAvailability(parms) {
   let igual = false
   var RepeatData;
  
-    
-    console.log(`http://${parms}/checagem`)
-    const {data} = await axios.get(`http://${parms}/checagem`)
-    console.log(data)
-    // RepeatData = data.data
- 
-    // console.log(error)
-    // return {
-    //   status: false,
-    //   data: null,
-    //   message: 'Falha na verificação'
-    // }
-  
-  // return {
-  //   status: false,
-  //   data: null,
-  //   message: 'Falha na verificação'
-  // }
+    try {
+      const {data} = await axios.get(`http://${parms}/checagem`)
+      RepeatData = data
+    } catch (error) {
+      console.log(error)
+      return {
+        status: false,
+        data: null,
+        message: 'Falha na verificação'
+      }
+    }
   list.map(item => {
     if (item.Mac === RepeatData) {
       igual = true
@@ -51,13 +44,13 @@ async function deviceVerification(parms) {
     return {
       status: true,
       data: dado,
-      message: 'Success'
+      message: 'Verificação bem sucedida'
     }
   } catch (error) {
     return {
       status: false,
       data: null,
-      message: 'Verification failed'
+      message: 'Verificação falhou'
     }
   }
 }

@@ -52,7 +52,7 @@ export default function HomeScreen() {
     close()
   }
   function clearAll() {
-    if (confirText === "Confirm") {
+    if (confirText === "CONFIRMAR") {
       setFirstLoad(true)
       load()
       clean()
@@ -75,27 +75,6 @@ export default function HomeScreen() {
   } else {
     return (
       <ScrollView style={styles.body}>
-        {numberDevices === 0 ? (
-          <Card style={styles.card}>
-            <Card.Content>
-              <Text style={styles.textCard}> Sem dispositivos</Text>
-            </Card.Content>
-          </Card>
-        ) : list.map(item => (
-          <Card onPress={() =>
-            navigation.navigate('Detail', {
-              item: item,
-            })
-          } style={styles.card} key={item.id}>
-            <Card.Content style={styles.cardList}>
-              <Text style={styles.textCard}>{item.Alias}</Text>
-              <IconButton 
-                color={styles.textButton.color}
-                size={24}
-                onPress={() => console.log(item)} />
-            </Card.Content>
-          </Card>
-        ))}
         <View style={styles.groupButton}>
           <Button 
             mode="text"
@@ -121,6 +100,28 @@ export default function HomeScreen() {
             APAGAR
           </Button>}
         </View>
+        {numberDevices === 0 ? (
+          <Card style={styles.card}>
+            <Card.Content>
+              <Text style={styles.textCard}> Sem dispositivos</Text>
+            </Card.Content>
+          </Card>
+        ) : list.map(item => (
+          <Card onPress={() =>
+            navigation.navigate('Detail', {
+              item: item,
+            })
+          } style={styles.card} key={item.id}>
+            <Card.Content style={styles.cardList}>
+              <Text style={styles.textCard}>{item.Alias}</Text>
+              <IconButton 
+                color={styles.textButton.color}
+                size={24}
+                onPress={() => console.log(item)} />
+            </Card.Content>
+          </Card>
+        ))}
+        
         <Portal>
           <Dialog visible={dialog} onDismiss={() => close()} style={styles.dialog}>
             <Dialog.Title style={styles.textButton}>PAINEL DE PESQUISA</Dialog.Title>
@@ -135,7 +136,7 @@ export default function HomeScreen() {
                 <View>
                   <TextInput
                     style={styles.textInputs}
-                    label="Alias"
+                    label="NOME"
                     value={alias}
                     onChangeText={text => setAlias(text)}
                   />
@@ -175,17 +176,17 @@ export default function HomeScreen() {
         </Portal>
         <Portal>
           <Dialog visible={cleanAlert} onDismiss={() => close()} style={styles.dialog}>
-            <Dialog.Title style={styles.textButton}>[ALERTA] - APAGAR DISPOSITIVOS!</Dialog.Title>
+            <Dialog.Title style={styles.textButton}>[ALERTA]-APAGAR DISPOSITIVOS</Dialog.Title>
             <Dialog.Content>
               <TextInput
                 style={styles.textInputs}
-                label="type 'Confirm'"
+                label="DIGITE 'CONFIRMAR'"
                 onChangeText={text => setConfirmText(text)}
               />
             </Dialog.Content>
             <Dialog.Actions>
-              <Button style={styles.button} mode="contained" onPress={() => clearAll()}>
-                <Text style={styles.textButton}>FECHAR</Text>
+              <Button style={styles.button} mode="text" onPress={() => clearAll()}>
+                <Text style={styles.textButton}>PRONTO</Text>
               </Button>
             </Dialog.Actions>
             <Snackbar

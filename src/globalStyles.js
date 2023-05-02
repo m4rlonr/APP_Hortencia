@@ -21,6 +21,7 @@ export default StyleSheet.create({
     flex: 1,
     margin: 5,
     backgroundColor: theme.colors.primary,
+    borderRadius: 5
   },
   cardList: {
     flex: 1,
@@ -30,7 +31,7 @@ export default StyleSheet.create({
   textCard: {
     color: theme.colors.text,
     fontSize: 30,
-    fontWeight: '100',
+    fontWeight: '200',
     textTransform: 'uppercase'
   },
   button: {
@@ -52,6 +53,7 @@ export default StyleSheet.create({
   dialog: {
     alignContent: 'center',
     backgroundColor: theme.colors.background,
+    borderRadius: 5
   },
   textDetail: {
     color: theme.colors.text,
@@ -63,6 +65,7 @@ export default StyleSheet.create({
   },
   groupButton: {
     flex: 1,
+    borderRadius: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
