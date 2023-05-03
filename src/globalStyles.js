@@ -16,7 +16,7 @@ export default StyleSheet.create({
   cardDetail: {
     flex: 1,
     margin: 5,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: "#B0E0E6",
   },
   card: {
     flex: 1,
@@ -62,6 +62,12 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     padding: 5,
   },
+  textDetail2: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 5,
+  },
   tableText: {
     fontSize: 32
   },
@@ -82,7 +88,7 @@ export default StyleSheet.create({
     alignItems:'center',
     backgroundColor: '#F08080',
     borderRadius: 3,
-    color: "white"
+    
   },
   groupButton2: {
     flex: 1,
@@ -90,11 +96,21 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems:'center',
-    backgroundColor: '#FFFFFF',
-    color: "white"
+    backgroundColor: '#0000FF',
+    borderRadius: 5,
+    marginTop: 2,
+    padding: 10,
   },
   groupButton3: {
-
+    marginTop: 2,
+    padding: 5,
+    flex: 1,
+    borderRadius: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 5
   },
   AtribList: {
     flex: 1,

@@ -69,19 +69,20 @@ export default function DetailScreen(e) {
            
               {/* <View style={styles.groupButton}> */}
               <View style={styles.groupButton2}>
-                <Text style={styles.textDetail}>ID</Text>
-                <Text style={styles.textDetail}>STATUS</Text>
-                <Text style={styles.textDetail}>%</Text>
-                <Text style={styles.textDetail}>AÇÃO</Text>
+                <Text style={styles.textDetail2}>ID</Text>
+                <Text style={styles.textDetail2}>STATUS</Text>
+                <Text style={styles.textDetail2}>%</Text>
+                <Text style={styles.textDetail2}>AÇÃO</Text>
               </View>
               
               {/* <View style={styles.groupButton} >  */}
               <View  > 
               {listTrial.map((item, indice) => 
-              <View style={styles.groupButton2} key={indice} >
+              <View style={styles.groupButton3} key={indice} >
                 <Text style={styles.textDetail}>{indice + 1}</Text>
                 {item === "false" ? <Text>Desligado</Text> : <Text>Ligado</Text>}
                 {leitura[indice] ? <Text style={styles.textDetail}>{leitura[indice]}</Text> : <ActivityIndicator size="small" color="#0000ff" />}
+                
                 <IconButton icon="power" color={styles.textButton.color} size={24} onPress={() => ctlRele(item, indice)} />
               </View>
 
