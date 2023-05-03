@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Card, Button, Portal, Divider, Dialog, TextInput, ActivityIndicator, IconButton } from 'react-native-paper';
 import styles from "../globalStyles"
 import { deviceVerification, moistureCheck, relayControl, systemActivation } from "../axios"
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function DetailScreen(e) {
   const item = e.route.params.item
@@ -12,6 +13,7 @@ export default function DetailScreen(e) {
   const [loadDevice, setLoadDevice] = useState(false)
   const [listTrial, setListTrial] = useState()
   const [leitura, setLeitura] = useState([])
+  const [statusSistema, setStatusSistema] = useState(false)
   var intervalo = 5000
 
   async function ctlRele(active, rele) {
@@ -20,9 +22,15 @@ export default function DetailScreen(e) {
 
   async function load(item) {
     let check = await deviceVerification(item.IP)
+    // console.log(check.data[0])
+    if(check.data[0] === "powerup") {
+      setStatusSistema(true)
+    } else {
+      setStatusSistema(false)
+    }
     let sleep = check.data.shift()
     setListTrial(check.data)
-    setLoadDevice(check.status)                         
+    setLoadDevice(check.status)             
   }
   async function readHum(item) {
     setLeitura(await moistureCheck(item.IP))
@@ -44,28 +52,41 @@ export default function DetailScreen(e) {
         <View style={styles.viewContent}>
           <Card style={styles.cardDetail}>
             <Card.Content>
-              <View style={styles.groupButton}>
-                <Text style={styles.textDetail}>Nome dispositivo: {item.Alias}</Text>
+              {statusSistema === true ?
+               <View style={styles.groupButton}>
+                <Text style={styles.textDetail}>{item.Alias}</Text>
                 <IconButton icon="power" color={styles.textButton.color} size={32} onPress={() => systemActivation(item.IP)} />
               </View>
-              <Divider style={{ backgroundColor: 'white' }} />
+              : 
+              <View style={styles.groupButton1}>
+                <Text style={styles.textDetail}>{item.Alias}</Text>
+                <IconButton icon="power" color={styles.textButton.color} size={32} onPress={() => systemActivation(item.IP)} />
+              </View>
+              }
+           
               <Text style={styles.textDetail}>IP: {item.IP}</Text>
               <Text style={styles.textDetail}>MAC: {item.Mac}</Text>
-              <Divider style={{ backgroundColor: 'white' }} />
-              <View style={styles.groupButton}>
+           
+              {/* <View style={styles.groupButton}> */}
+              <View style={styles.groupButton2}>
                 <Text style={styles.textDetail}>ID</Text>
                 <Text style={styles.textDetail}>STATUS</Text>
                 <Text style={styles.textDetail}>%</Text>
                 <Text style={styles.textDetail}>AÇÃO</Text>
               </View>
-              {listTrial.map((item, indice) =>
-                <View style={styles.groupButton} key={indice}> 
-                  <Text style={styles.textDetail}>{indice}</Text>
-                  {item === "true" ? (<Text style={styles.textDetail}>LIGADO</Text>) :  (<Text style={styles.textDetail}>DESLIGADO</Text>)}
-                  {leitura[indice] ? <Text style={styles.textDetail}>{leitura[indice]}</Text> : <ActivityIndicator size="small" color="#0000ff" />}
-                  <IconButton icon="power" color={styles.textButton.color} size={24} onPress={() => ctlRele(item, indice)} />
-                </View>
+              
+              {/* <View style={styles.groupButton} >  */}
+              <View  > 
+              {listTrial.map((item, indice) => 
+              <View style={styles.groupButton2} key={indice} >
+                <Text style={styles.textDetail}>{indice + 1}</Text>
+                {item === "false" ? <Text>Desligado</Text> : <Text>Ligado</Text>}
+                {leitura[indice] ? <Text style={styles.textDetail}>{leitura[indice]}</Text> : <ActivityIndicator size="small" color="#0000ff" />}
+                <IconButton icon="power" color={styles.textButton.color} size={24} onPress={() => ctlRele(item, indice)} />
+              </View>
+
               )}
+              </View>
             </Card.Content>
           </Card>
           <Button labelStyle={styles.textButton} style={styles.Button} onPress={() => {

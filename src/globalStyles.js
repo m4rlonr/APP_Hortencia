@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import theme from '../src/theme';
+import { all } from 'axios';
 
 export default StyleSheet.create({
   body: {
@@ -15,24 +16,24 @@ export default StyleSheet.create({
   cardDetail: {
     flex: 1,
     margin: 5,
-    backgroundColor: theme.colors.backdrop,
+    backgroundColor: theme.colors.primary,
   },
   card: {
     flex: 1,
     margin: 5,
     backgroundColor: theme.colors.primary,
-    borderRadius: 5
   },
   cardList: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignContent: 'center'
   },
   textCard: {
     color: theme.colors.text,
     fontSize: 30,
-    fontWeight: '200',
-    textTransform: 'uppercase'
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
   button: {
     margin: 5,
@@ -58,7 +59,8 @@ export default StyleSheet.create({
   textDetail: {
     color: theme.colors.text,
     fontSize: 20,
-    fontWeight: '100',
+    fontWeight: 'bold',
+    padding: 5,
   },
   tableText: {
     fontSize: 32
@@ -68,6 +70,31 @@ export default StyleSheet.create({
     borderRadius: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems:'center',
+    backgroundColor: '#00FF7F',
+    borderRadius: 3
+  },
+  groupButton1: {
+    flex: 1,
+    borderRadius: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center',
+    backgroundColor: '#F08080',
+    borderRadius: 3,
+    color: "white"
+  },
+  groupButton2: {
+    flex: 1,
+    borderRadius: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center',
+    backgroundColor: '#FFFFFF',
+    color: "white"
+  },
+  groupButton3: {
+
   },
   AtribList: {
     flex: 1,
@@ -75,6 +102,12 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     color: theme.colors.text,
     fontSize: 20,
-    fontWeight: '100',
+    fontWeight: 'bold',
+  },
+  cardItens: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
+
 });

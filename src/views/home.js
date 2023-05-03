@@ -117,7 +117,7 @@ export default function HomeScreen() {
               <IconButton 
                 color={styles.textButton.color}
                 size={24}
-                onPress={() => console.log(item)} />
+                onPress={() => {}} />
             </Card.Content>
           </Card>
         ))}

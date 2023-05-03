@@ -4,6 +4,8 @@
 
 import React from 'react';                                          // Importacao padrao do react
 import Routes from './src/routes'                                   // Importacao do arquivos de rotas
+import theme from './src/theme';
+
 import { Provider as PaperProvider } from 'react-native-paper';
 import type {PropsWithChildren} from 'react';                       //
 import {
@@ -59,7 +61,7 @@ function App(): JSX.Element {                                       // Funcao pr
   };
 
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <Routes />
     </PaperProvider>
   );
