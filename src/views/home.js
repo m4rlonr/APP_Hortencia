@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { numberDevices, moreDevice, init, list, clean } from "../storage"
 import { deviceAvailability } from "../axios"
 import styles from "../globalStyles"
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -98,7 +99,9 @@ export default function HomeScreen() {
             onPress={() => { setCleanAlert(true) }}
           >
             APAGAR
-          </Button>}
+            
+          </Button>
+          }
         </View>
         {numberDevices === 0 ? (
           <Card style={styles.card}>
@@ -115,6 +118,7 @@ export default function HomeScreen() {
             <Card.Content style={styles.cardList}>
               <Text style={styles.textCard}>{item.Alias}</Text>
               <IconButton 
+                icon="arrow-right"
                 color={styles.textButton.color}
                 size={24}
                 onPress={() => {}} />

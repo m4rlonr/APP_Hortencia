@@ -13,3 +13,12 @@ Versao o java
 
 Instalado watchman
     https://facebook.github.io/watchman/docs/install/#buildinstall
+
+
+Para que os icones voltem a funcionar 
+    https://dicasrapidas.com.br/react-native/react-native-vector-icons-nao-aparecem.html
+
+
+Comandos react native
+Reset react sem cache-
+        npx react-native start --reset-cache
