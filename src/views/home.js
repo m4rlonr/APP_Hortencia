@@ -3,9 +3,8 @@ import { ScrollView, Text, View } from 'react-native';
 import { Button, Card, Portal, Dialog, TextInput, Snackbar, ActivityIndicator, IconButton } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { numberDevices, moreDevice, init, list, clean } from "../storage"
-import { deviceAvailability } from "../axios"
+const axios = require('axios').default;
 import styles from "../globalStyles"
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -34,15 +33,35 @@ export default function HomeScreen() {
       setMac(null)
     }
   }
+
   async function check() {
-    const resp = await deviceAvailability(ip)
-    if (resp.status === true) {
-      setMac(resp.data)
-      setRespSearch(true)
-    } else {
-      setError(resp.message)
-      setVisible(true)
-    }
+      try {
+        await axios.get(`http://${ip}/checagem`).then(response => { 
+          setMac(response.data)
+          setRespSearch(true)
+        })
+      } catch (error) {
+        setError(resp.message)
+        setVisible(true)
+      }
+    // list.map(item => {
+    //   if (item.Mac === Object) {
+    //     igual = true
+    //   }
+    // })
+      // if(response.status === true){
+      //   setMac(response.data)
+      //   setRespSearch(response.status)
+      // }
+      // const resp = await deviceAvailability(ip)
+      // if (resp.status === true) {
+      //   setMac(resp.data)
+      //   setRespSearch(true)
+      // } else {
+      //   setError(resp.message)
+      //   setVisible(true)
+      // }
+
   }
   async function saveDevice() {
     const resp = await moreDevice({ id: numberDevices, Mac: mac, Alias: alias, IP: ip })

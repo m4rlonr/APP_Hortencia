@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Card, Button, Portal, Divider, Dialog, TextInput, ActivityIndicator, IconButton } from 'react-native-paper';
+import { Card, Button, Portal, Dialog, TextInput, ActivityIndicator, IconButton } from 'react-native-paper';
 import styles from "../globalStyles"
 import { deviceVerification, moistureCheck, relayControl, systemActivation } from "../axios"
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function DetailScreen(e) {
   const item = e.route.params.item

@@ -1,41 +1,40 @@
-// import * as axios from 'axios';
 import { list } from "./storage"
-
 const axios = require('axios').default;
 
-async function deviceAvailability(parms) {
-  let igual = false
-  var RepeatData;
- 
-    try {
-      const {data} = await axios.get(`http://${parms}/checagem`)
-      RepeatData = data
-    } catch (error) {
-      console.log(error)
-      return {
-        status: false,
-        data: null,
-        message: 'Falha na verificação'
-      }
-    }
-  list.map(item => {
-    if (item.Mac === RepeatData) {
-      igual = true
-    }
-  })
-  if (igual === false) {
-    return {
-      status: true,
-      data: RepeatData,
-      message: 'Verificação bem sucedida'
-    }
-  } else {
-    return {
-      status: false,
-      data: null,
-      message: 'Dispositivo já cadastrado'
-    }
-  }
+// async function deviceAvailability(parms) {
+  async function deviceAvailability() {
+  // let igual = false
+  // let Object = null
+  //   try {
+  //     const response = await axios.get({baseURL:`http://${parms}/checagem`, timeout: 2000})
+  //     Object = response.data
+  //   } catch (error) {
+  //     if(error){
+  //       return {
+  //         status: false,
+  //         data: {},
+  //         message: 'Erro ao cadastrar'
+  //       }
+  //     }
+  //   }
+  // list.map(item => {
+  //   if (item.Mac === Object) {
+  //     igual = true
+  //   }
+  // })
+  // if (igual === false) {
+  //   return {
+  //     status: true,
+  //     data: Object,
+  //     message: 'Verificação bem sucedida'
+  //   }
+  // } else {
+  //   return {
+  //     status: false,
+  //     data: {},
+  //     message: 'Dispositivo já cadastrado'
+  //   }
+  // }
 }
 async function deviceVerification(parms) {
   try {
@@ -77,5 +76,4 @@ async function systemActivation(ip) {
     console.log(error)
   }
 }
-
 export { deviceAvailability, deviceVerification, moistureCheck, relayControl, systemActivation }
