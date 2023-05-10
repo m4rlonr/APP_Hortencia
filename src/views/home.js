@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { Button, Card, Portal, Dialog, TextInput, Snackbar, ActivityIndicator, IconButton } from 'react-native-paper';
+import { Button, Card, Portal,  TouchableOpacity, Dialog, TextInput, Snackbar, ActivityIndicator, IconButton } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { numberDevices, moreDevice, init, list, clean } from "../storage"
 const axios = require('axios').default;
@@ -20,7 +20,7 @@ export default function HomeScreen() {
   const [mac, setMac] = useState(null);
   const [error, setError] = useState(null)
   const [firstLoad, setFirstLoad] = useState(true)
-
+// ------------------------------------------------------------------------------ ANTIGAS
   function close() {
     if (cleanAlert) {
       setCleanAlert(false)
@@ -33,7 +33,6 @@ export default function HomeScreen() {
       setMac(null)
     }
   }
-
   async function check() {
       try {
         await axios.get(`http://${ip}/checagem`).then(response => { 
@@ -85,6 +84,27 @@ export default function HomeScreen() {
       setFirstLoad(false)
     }
   }
+// ------------------------------------------------------------------------------ NOVAS
+function renderApagar(numberDevices) {
+  if(numberDevices !== 0 ){
+    return (
+      <Button 
+      disabled
+      mode="text"
+      labelStyle={styles.textButton}
+      style={styles.button}
+      onPress={() => { setCleanAlert(true) }}
+    >
+      APAGAR
+      
+    </Button>
+    )
+  }
+}
+
+
+
+
   if (firstLoad === true) {
     load()
     return (
@@ -94,38 +114,17 @@ export default function HomeScreen() {
     )
   } else {
     return (
-      <ScrollView style={styles.body}>
-        <View style={styles.groupButton}>
-          <Button 
-            mode="text"
-            labelStyle={styles.textButton}
-            style={styles.button}
-            onPress={() => setDialog(true)}
-          >
-            CADASTRAR
-          </Button>
-          {numberDevices !== 0 ? <Button 
-            labelStyle={styles.textButton}
-            style={styles.button}
-            onPress={() => { setCleanAlert(true) }}
-          >
-            APAGAR
-          </Button> : <Button 
-            disabled
-            mode="text"
-            labelStyle={styles.textButton}
-            style={styles.button}
-            onPress={() => { setCleanAlert(true) }}
-          >
-            APAGAR
-            
-          </Button>
-          }
-        </View>
-        {numberDevices === 0 ? (
-          <Card style={styles.card}>
+      <ScrollView > 
+{/* -------------------------------------------------------------------------------------NOVO */}
+        <Card style={styles.MainCard}>
+          <ScrollView >
+            <Card style={styles.SubCard}>
+            <Text>Teste</Text>
+            </Card>
+          {numberDevices === 0 ? (
+          <Card style={styles.SubCard}>
             <Card.Content>
-              <Text style={styles.textCard}> Sem dispositivos</Text>
+              <Text> Sem dispositivos</Text>
             </Card.Content>
           </Card>
         ) : list.map(item => (
@@ -134,8 +133,8 @@ export default function HomeScreen() {
               item: item,
             })
           } style={styles.card} key={item.id}>
-            <Card.Content style={styles.cardList}>
-              <Text style={styles.textCard}>{item.Alias}</Text>
+            <Card.Content >
+              <Text s>{item.Alias}</Text>
               <IconButton 
                 icon="arrow-right"
                 color={styles.textButton.color}
@@ -143,8 +142,36 @@ export default function HomeScreen() {
                 onPress={() => {}} />
             </Card.Content>
           </Card>
+          
         ))}
+          </ScrollView>
+        </Card>
+{/* -------------------------------------------------------------------------------------NOVO */}
         
+        <View>
+          <Button 
+            mode="elevated"
+            buttonColor="lightblue"
+            textColor="black"
+            labelStyle={styles.SingleButtonText}
+            style={styles.SingleButton}
+            onPress={() => setDialog(true)}
+          >
+            CADASTRAR
+          </Button>
+          
+          {/* {numberDevices === 0  ?  : <Button 
+            disabled
+            mode="text"
+            labelStyle={styles.textButton}
+            style={styles.button}
+            onPress={() => { setCleanAlert(true) }}
+          >
+            APAGAR
+            
+          </Button> */}
+          {/* } */}
+        </View>
         <Portal>
           <Dialog visible={dialog} onDismiss={() => close()} style={styles.dialog}>
             <Dialog.Title style={styles.textButton}>PAINEL DE PESQUISA</Dialog.Title>
