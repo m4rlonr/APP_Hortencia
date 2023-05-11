@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { Button, Card, Portal,  TouchableOpacity, Dialog, TextInput, Snackbar, ActivityIndicator, IconButton } from 'react-native-paper';
+import { Button, Card, Portal, Dialog, TextInput, Snackbar, ActivityIndicator } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { numberDevices, moreDevice, init, list, clean } from "../storage"
 const axios = require('axios').default;
@@ -20,7 +20,7 @@ export default function HomeScreen() {
   const [mac, setMac] = useState(null);
   const [error, setError] = useState(null)
   const [firstLoad, setFirstLoad] = useState(true)
-// ------------------------------------------------------------------------------ ANTIGAS
+  // ------------------------------------------------------------------------------ ANTIGAS
   function close() {
     if (cleanAlert) {
       setCleanAlert(false)
@@ -34,32 +34,32 @@ export default function HomeScreen() {
     }
   }
   async function check() {
-      try {
-        await axios.get(`http://${ip}/checagem`).then(response => { 
-          setMac(response.data)
-          setRespSearch(true)
-        })
-      } catch (error) {
-        setError(resp.message)
-        setVisible(true)
-      }
+    try {
+      await axios.get(`http://${ip}/checagem`).then(response => {
+        setMac(response.data)
+        setRespSearch(true)
+      })
+    } catch (error) {
+      setError(resp.message)
+      setVisible(true)
+    }
     // list.map(item => {
     //   if (item.Mac === Object) {
     //     igual = true
     //   }
     // })
-      // if(response.status === true){
-      //   setMac(response.data)
-      //   setRespSearch(response.status)
-      // }
-      // const resp = await deviceAvailability(ip)
-      // if (resp.status === true) {
-      //   setMac(resp.data)
-      //   setRespSearch(true)
-      // } else {
-      //   setError(resp.message)
-      //   setVisible(true)
-      // }
+    // if(response.status === true){
+    //   setMac(response.data)
+    //   setRespSearch(response.status)
+    // }
+    // const resp = await deviceAvailability(ip)
+    // if (resp.status === true) {
+    //   setMac(resp.data)
+    //   setRespSearch(true)
+    // } else {
+    //   setError(resp.message)
+    //   setVisible(true)
+    // }
 
   }
   async function saveDevice() {
@@ -68,6 +68,8 @@ export default function HomeScreen() {
       setError(resp.message)
       setVisible(true)
     }
+    setMac(null)
+    setIP(null)
     close()
   }
   function clearAll() {
@@ -84,101 +86,150 @@ export default function HomeScreen() {
       setFirstLoad(false)
     }
   }
-// ------------------------------------------------------------------------------ NOVAS
-function renderApagar(numberDevices) {
-  if(numberDevices !== 0 ){
-    return (
-      <Button 
-      disabled
-      mode="text"
-      labelStyle={styles.textButton}
-      style={styles.button}
-      onPress={() => { setCleanAlert(true) }}
-    >
-      APAGAR
-      
-    </Button>
-    )
-  }
-}
-
-
-
-
-  if (firstLoad === true) {
-    load()
-    return (
-      <View style={styles.ViewLoad}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    )
-  } else {
-    return (
-      <ScrollView > 
-{/* -------------------------------------------------------------------------------------NOVO */}
-        <Card style={styles.MainCard}>
-          <ScrollView >
-            <Card style={styles.SubCard}>
-            <Text>Teste</Text>
-            </Card>
-          {numberDevices === 0 ? (
-          <Card style={styles.SubCard}>
-            <Card.Content>
-              <Text> Sem dispositivos</Text>
-            </Card.Content>
-          </Card>
-        ) : list.map(item => (
-          <Card onPress={() =>
-            navigation.navigate('Detail', {
-              item: item,
-            })
-          } style={styles.card} key={item.id}>
-            <Card.Content >
-              <Text s>{item.Alias}</Text>
-              <IconButton 
-                icon="arrow-right"
-                color={styles.textButton.color}
-                size={24}
-                onPress={() => {}} />
-            </Card.Content>
-          </Card>
-          
-        ))}
-          </ScrollView>
-        </Card>
-{/* -------------------------------------------------------------------------------------NOVO */}
-        
-        <View>
-          <Button 
+  // ------------------------------------------------------------------------------ NOVAS
+  function renderApagar() {
+    if (list.length !== 0) {
+      return (
+        <View style={styles.GroupMultButton}>
+          <Button
             mode="elevated"
-            buttonColor="lightblue"
-            textColor="black"
+            buttonColor="#074d39"
+            textColor="#FFFFFF"
             labelStyle={styles.SingleButtonText}
-            style={styles.SingleButton}
+            style={styles.GroupSingleButon}
             onPress={() => setDialog(true)}
           >
             CADASTRAR
           </Button>
-          
-          {/* {numberDevices === 0  ?  : <Button 
-            disabled
-            mode="text"
-            labelStyle={styles.textButton}
-            style={styles.button}
+          <Button
+            mode="elevated"
+            buttonColor="#074d39"
+            textColor="#FFFFFF"
+            labelStyle={styles.SingleButtonText}
+            style={styles.GroupSingleButon}
             onPress={() => { setCleanAlert(true) }}
           >
             APAGAR
-            
-          </Button> */}
-          {/* } */}
+          </Button>
         </View>
+      )
+    } else {
+      return (
+        <Button
+          mode="elevated"
+          buttonColor="#074d39"
+          textColor="#FFFFFF"
+          labelStyle={styles.SingleButtonText}
+          style={styles.SingleButton}
+          onPress={() => setDialog(true)}
+        >
+          CADASTRAR
+        </Button>
+      )
+    }
+
+  }
+  function renderSearchDialog() {
+    if (ip !== null && mac === null) {
+      return (
+        <View style={styles.GroupMultButton}>
+          <Button mode="elevated"
+            buttonColor="#074d39"
+            textColor="#FFFFFF"
+            labelStyle={styles.SingleButtonText}
+            style={styles.GroupSingleButon} onPress={() => check()}>
+            <Text style={styles.textButton}>BUSCAR</Text>
+          </Button>
+
+          <Button mode="elevated"
+            buttonColor="#074d39"
+            textColor="#FFFFFF"
+            labelStyle={styles.SingleButtonText}
+            style={styles.GroupSingleButon} onPress={() => close()}>
+            <Text style={styles.textButton}>FECHAR</Text>
+          </Button></View>
+      )
+    } else if (ip !== null && mac !== null) {
+      return (
+        <View style={styles.GroupMultButton}>
+          <Button
+            mode="elevated"
+            buttonColor="#074d39"
+            textColor="#FFFFFF"
+            labelStyle={styles.SingleButtonText}
+            style={styles.GroupSingleButon}
+            onPress={() => saveDevice()}>
+            <Text style={styles.textButton}>SALVAR</Text>
+          </Button>
+          <Button mode="elevated"
+            buttonColor="#074d39"
+            textColor="#FFFFFF"
+            labelStyle={styles.SingleButtonText}
+            style={styles.GroupSingleButon} onPress={() => close()}>
+            <Text style={styles.textButton}>FECHAR</Text>
+          </Button>
+        </View>
+      )
+    } else {
+      return (
+        <Button mode="elevated"
+          buttonColor="#074d39"
+          textColor="#FFFFFF"
+          labelStyle={styles.SingleButtonText}
+          style={styles.GroupSingleButon} onPress={() => close()}>
+          <Text style={styles.textButton}>FECHAR</Text>
+        </Button>
+      )
+    }
+
+  }
+  if (firstLoad === true) {
+    load()
+    return (
+      <View style={styles.ViewLoad}>
+        <ActivityIndicator size="large" color="#074d39" />
+      </View>
+    )
+  } else {
+    {/* -------------------------------------------------------------------------------------NOVO */ }
+    return (
+      <ScrollView style={styles.Body}>
+        <Card style={styles.MainCard}>
+          <ScrollView >
+            {numberDevices === 0 ? (
+              <Card style={styles.SubCard}>
+                <Card.Content>
+                  <Text style={styles.SubCardText}> Sem dispositivos</Text>
+                </Card.Content>
+              </Card>
+            ) : list.map(item => (
+              <Card onPress={() =>
+                navigation.navigate('Detail', {
+                  item: item,
+                })
+              } style={styles.SubCard} key={item.id}>
+                <Card.Content>
+                  <Text style={styles.SubCardText}>{item.Alias}</Text>
+                </Card.Content>
+              </Card>
+
+            ))}
+          </ScrollView>
+        </Card>
+
+        {renderApagar()}
+        {/* -------------------------------------------------------------------------------------NOVO */}
         <Portal>
-          <Dialog visible={dialog} onDismiss={() => close()} style={styles.dialog}>
-            <Dialog.Title style={styles.textButton}>PAINEL DE PESQUISA</Dialog.Title>
+          <Dialog visible={dialog} onDismiss={() => close()} style={styles.Dialog}>
+            <Dialog.Title >PAINEL DE BUSCA</Dialog.Title>
             <Dialog.Content>
               <TextInput
+                mode="outlined"
                 style={styles.textInputs}
-                label="INSIRA UM IP COMO 192.168.0.1"
+                underlineColor='#3d7d4d'
+                textColor='#074d39'
+                placeholder="Insira um IP como 192.168.0.1"
+                label="IP do ESP32"
                 value={ip}
                 onChangeText={text => setIP(text)}
               />
@@ -200,18 +251,7 @@ function renderApagar(numberDevices) {
               }
             </Dialog.Content>
             <Dialog.Actions>
-              {respSearch ? (
-                <Button style={styles.button} mode="text" onPress={() => saveDevice()}>
-                  <Text style={styles.textButton}>SALVAR</Text>
-                </Button>
-              ) : (
-                <Button style={styles.button} mode="text" onPress={() => check()}>
-                  <Text style={styles.textButton}>PEQUISAR</Text>
-                </Button>
-              )}
-              <Button style={styles.button} mode="text" onPress={() => close()}>
-                <Text style={styles.textButton}>FECHAR</Text>
-              </Button>
+              {renderSearchDialog()}
             </Dialog.Actions>
             <Snackbar
               visible={visible}
@@ -226,7 +266,7 @@ function renderApagar(numberDevices) {
         </Portal>
         <Portal>
           <Dialog visible={cleanAlert} onDismiss={() => close()} style={styles.dialog}>
-            <Dialog.Title style={styles.textButton}>[ALERTA]-APAGAR DISPOSITIVOS</Dialog.Title>
+            <Dialog.Title style={styles.textButton}>LIMPAR DISPOSITIVOS</Dialog.Title>
             <Dialog.Content>
               <TextInput
                 style={styles.textInputs}
@@ -235,7 +275,11 @@ function renderApagar(numberDevices) {
               />
             </Dialog.Content>
             <Dialog.Actions>
-              <Button style={styles.button} mode="text" onPress={() => clearAll()}>
+              <Button mode="elevated"
+                buttonColor="#074d39"
+                textColor="#FFFFFF"
+                labelStyle={styles.SingleButtonText}
+                style={styles.GroupSingleButon} onPress={() => clearAll()}>
                 <Text style={styles.textButton}>PRONTO</Text>
               </Button>
             </Dialog.Actions>

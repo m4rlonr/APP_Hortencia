@@ -4,11 +4,7 @@ import { all } from 'axios';
 
 export default StyleSheet.create({
 
-  ViewLoad: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: theme.colors.background,
-  },
+
   cardDetail: {
     flex: 1,
     margin: 5,
@@ -31,27 +27,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     textTransform: 'uppercase',
   },
-
-  viewContent: {
-    margin: 5
-  },
-  textInputs: {
-    marginTop: 5,
-    backgroundColor: theme.colors.disabled,
-  },
   dialog: {
     alignContent: 'center',
     backgroundColor: theme.colors.background,
     borderRadius: 5
   },
   textDetail: {
-    color: theme.colors.text,
-    fontSize: 20,
-    fontWeight: 'bold',
-    padding: 5,
-  },
-  textDetail2: {
-    color: "white",
+    color: "black",
     fontSize: 20,
     fontWeight: 'bold',
     padding: 5,
@@ -73,22 +55,12 @@ export default StyleSheet.create({
     borderRadius: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:'center',
+    alignItems: 'center',
     backgroundColor: '#F08080',
     borderRadius: 3,
-    
+
   },
-  groupButton2: {
-    flex: 1,
-    borderRadius: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems:'center',
-    backgroundColor: '#0000FF',
-    borderRadius: 5,
-    marginTop: 2,
-    padding: 10,
-  },
+
   groupButton3: {
     marginTop: 2,
     padding: 5,
@@ -96,7 +68,7 @@ export default StyleSheet.create({
     borderRadius: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:'center',
+    alignItems: 'center',
     backgroundColor: '#FFFFFF',
     borderRadius: 5
   },
@@ -123,14 +95,12 @@ export default StyleSheet.create({
     bottom: 30,
   },
   // ------------------------------------------------------------------------------------ NOVOS
-  body: {
-    // flex: 1,
-    // alignContent: 'center',
-    // backgroundColor: theme.colors.background,
+  Body: {
+    backgroundColor: '#abea7e',
   },
   SingleButton: {
     margin: 5,
-    height: 'auto'
+    width: 'auto'
   },
   SingleButtonText: {
     fontSize: 18,
@@ -138,16 +108,124 @@ export default StyleSheet.create({
   MainCard: {
     flex: 1,
     margin: 5,
-    backgroundColor: 'orange',
-    height: 750
+    backgroundColor: '#ffffff',
+    height: 750,
+    padding: 5
   },
   SubCard: {
     margin: 5,
-    height:50
+    height: 65,
+    backgroundColor: '#3d7d4d',
   },
-  // ------------------------------------------------------------------------------------ TESTE
-  teste:{
-    height: '90%',
-    backgroundColor: 'red'
-  }
+  SubCardText: {
+    fontSize: 24,
+    color: 'white'
+  },
+  Dialog: {
+    backgroundColor: 'white',
+  },
+  ViewLoad: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  GroupMultButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignSelf: 'center',
+    margin: 'auto',
+  },
+  GroupSingleButon: {
+    margin: 10,
+    width: "45%"
+  },
+  textInputs: {
+    marginTop: 5,
+    color: '#074d39'
+  },
+
+  SubCardB: {
+    margin: 5,
+    height: 65,
+    backgroundColor: '#3d7d4d',
+  },
+  TextSingle: {
+    fontSize: 14,
+  },
+  MainView: {
+    flex: 1,
+    margin: 5,
+    backgroundColor: '#ffffff',
+    height: 750,
+    padding: 5,
+    borderRadius: 5
+  },
+  MainViewText: {
+    fontSize: 24,
+    color: 'black',
+    alignSelf: 'center',
+    padding: 15,
+  },
+  MultiTextView: {
+    flexDirection: "row",
+    justifyContent: 'space-evenly',
+    marginBottom: 20
+  },
+  CardCells: {
+    height: '20%',
+    flexDirection: 'row',
+    // backgroundColor: '#00b1c8',
+    // backgroundColor: '#3d7d4d',
+    backgroundColor: '#00b1c8',
+    margin: 5,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  ViewGroupMultButton: {
+    flex: 1,
+    marginTop: 20,
+    // flexDirection: "row",
+    // alignSelf: 'center',
+  },
+  TextCell: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center',
+  },
+  NumberCell: {
+    fontSize: 60,
+    color: 'white',
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  },
+  ActionTextButton: {
+    alignSelf: 'center',
+  },
+  SingleButtonCell: {
+    margin: 5,
+    width: 65,
+  },
+  ViewGeral: {
+    marginTop: 50
+  },
+  GeralButton: {
+    margin: 5,
+    width: 'auto',
+    height: 300
+  },
+  TextGeral: {
+
+  },
+  // ------------------------------------------------------------------------------------ EXCLUIR
+  groupButton2: {
+    // flex: 1,
+    borderRadius: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#0000FF',
+    borderRadius: 5,
+    // marginTop: 2,
+    // padding: 10,
+  },
 });
