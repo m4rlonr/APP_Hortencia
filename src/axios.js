@@ -2,7 +2,7 @@ import { list } from "./storage"
 const axios = require('axios').default;
 
 // async function deviceAvailability(parms) {
-  async function deviceAvailability() {
+async function deviceAvailability() {
   // let igual = false
   // let Object = null
   //   try {

@@ -19,7 +19,6 @@ export default function DetailScreen(e) {
   }
   async function load(item) {
     let check = await deviceVerification(item.IP)
-    // console.log(check.data[0])
     if (check.data[0] === "powerup") {
       setStatusSistema(true)
     } else {
@@ -81,7 +80,7 @@ export default function DetailScreen(e) {
           <View style={styles.CardCells} key={indice} >
             <View>
               <Text style={styles.TextCell}>Humidade</Text>
-              {typeof leitura[indice] === String ? <Text style={styles.NumberCell}>{leitura[indice]}%</Text> : <Text style={styles.NumberCell}>0%</Text>}
+              <Text style={styles.NumberCell}>{leitura[indice]}%</Text>
               <Text style={styles.TextCell}>Sensor {indice + 1}</Text>
             </View>
             <View>
