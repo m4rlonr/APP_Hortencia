@@ -58,9 +58,9 @@ export default function AjusteScreen(e) {
         <Button mode="elevated"
           buttonColor="#41fa7e"
           textColor="#074d39"
-          labelStyle={styles.GeralButton}
+          labelStyle={styles.SingleButtonCell}
           style={styles.SingleButton} onPress={() => { }}>
-          <Text>Sistema Ativado</Text>
+          <Text>Ativo</Text>
         </Button>
       )
     } else {
@@ -68,9 +68,9 @@ export default function AjusteScreen(e) {
         <Button mode="elevated"
           buttonColor="#ff6064"
           textColor="#65202d"
-          labelStyle={styles.GeralButton}
+          labelStyle={styles.SingleButtonCell}
           style={styles.SingleButton} onPress={() => { }}>
-          <Text>Sistema Desativado</Text>
+          <Text>Destivado</Text>
         </Button>)
     }
 
@@ -86,10 +86,10 @@ export default function AjusteScreen(e) {
   } else {
     {/* -------------------------------------------------------------------------------------NOVO */ }
     return (
-      <ScrollView style={styles.Body}>
-        <Card style={styles.MainCard}>
+      <View style={styles.Body}>
+        <View style={styles.MainCard}>
           <ScrollView >
-            <View style={styles.ViewGeral}>
+            {/* <View style={styles.ViewGeral}>
 
 
               <TextInput
@@ -106,7 +106,7 @@ export default function AjusteScreen(e) {
                 style={styles.SingleButton} onPress={() => { }}>
                 SALVAR
               </Button>
-            </View>
+            </View> */}
 
             <View style={styles.ViewGeral}>
               <Text style={styles.ActionTextButton}>Botão de ação</Text>
@@ -114,7 +114,7 @@ export default function AjusteScreen(e) {
             </View>
 
           </ScrollView>
-        </Card>
+        </View>
         <Button mode="elevated"
           buttonColor="#074d39"
           textColor="#FFFFFF"
@@ -124,7 +124,7 @@ export default function AjusteScreen(e) {
           }}>
           VOLTAR
         </Button>
-      </ScrollView>
+      </View>
     );
   }
 };

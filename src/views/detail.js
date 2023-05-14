@@ -67,55 +67,54 @@ export default function DetailScreen(e) {
       </View>
     )
   } else {
-    return (
-      <ScrollView style={styles.Body}>
-        <View style={styles.MainView}>
-          <Text style={styles.MainViewText}>{item.Alias}</Text>
+    return (<View style={styles.Body}>
+      <ScrollView style={styles.MainCard}>
 
-          <View style={styles.MultiTextView}>
-            <Text>IP: {item.IP}</Text>
-            <Text >MAC: {item.Mac}</Text>
-          </View>
+        <Text style={styles.MainViewText}>{item.Alias}</Text>
 
-          {listTrial.map((item, indice) =>
-            <View style={styles.CardCells} key={indice} >
-              <View>
-                <Text style={styles.TextCell}>Humidade</Text>
-                {typeof leitura[indice] === String ? <Text style={styles.NumberCell}>{leitura[indice]}%</Text> : <Text style={styles.NumberCell}>0%</Text>}
-                <Text style={styles.TextCell}>Sensor {indice + 1}</Text>
-              </View>
-              <View>
-                <Text style={styles.ActionTextButton}>Botão de ação</Text>
-                {RenderButtonCell(item, indice)}
-              </View>
+        <View style={styles.MultiTextView}>
+          <Text>IP: {item.IP}</Text>
+          <Text >MAC: {item.Mac}</Text>
+        </View>
+
+        {listTrial.map((item, indice) =>
+          <View style={styles.CardCells} key={indice} >
+            <View>
+              <Text style={styles.TextCell}>Humidade</Text>
+              {typeof leitura[indice] === String ? <Text style={styles.NumberCell}>{leitura[indice]}%</Text> : <Text style={styles.NumberCell}>0%</Text>}
+              <Text style={styles.TextCell}>Sensor {indice + 1}</Text>
             </View>
-          )}
-        </View>
-        <View style={styles.GroupMultButton}>
-          <Button mode="elevated"
-            buttonColor="#074d39"
-            textColor="#FFFFFF"
-            labelStyle={styles.SingleButtonText}
-            style={styles.GroupSingleButon} onPress={() => {
-              navigation.goBack()
-              clearInterval(intervalo)
-            }}>
-            VOLTAR
-          </Button>
-          <Button mode="elevated"
-            buttonColor="#074d39"
-            textColor="#FFFFFF"
-            labelStyle={styles.SingleButtonText}
-            style={styles.GroupSingleButon} onPress={() =>
-              navigation.navigate('Ajustes', {
-                params: { data: item },
-              })
+            <View>
+              <Text style={styles.ActionTextButton}>Botão de ação</Text>
+              {RenderButtonCell(item, indice)}
+            </View>
+          </View>
+        )}
+      </ScrollView ><View style={styles.GroupMultButton}>
+        <Button mode="elevated"
+          buttonColor="#074d39"
+          textColor="#FFFFFF"
+          labelStyle={styles.SingleButtonText}
+          style={styles.GroupSingleButon} onPress={() => {
+            navigation.goBack()
+            clearInterval(intervalo)
+          }}>
+          VOLTAR
+        </Button>
+        <Button mode="elevated"
+          buttonColor="#074d39"
+          textColor="#FFFFFF"
+          labelStyle={styles.SingleButtonText}
+          style={styles.GroupSingleButon} onPress={() =>
+            navigation.navigate('Ajustes', {
+              params: { data: item },
+            })
 
-            }>
-            AJUSTES
-          </Button>
-        </View>
-      </ScrollView >
+          }>
+          AJUSTES
+        </Button>
+      </View>
+    </View>
     );
   }
 };

@@ -97,10 +97,11 @@ export default StyleSheet.create({
   // ------------------------------------------------------------------------------------ NOVOS
   Body: {
     backgroundColor: '#abea7e',
+    flex: 1,
   },
   SingleButton: {
     margin: 5,
-    width: 'auto'
+    width: 'auto',
   },
   SingleButtonText: {
     fontSize: 18,
@@ -108,9 +109,10 @@ export default StyleSheet.create({
   MainCard: {
     flex: 1,
     margin: 5,
-    backgroundColor: '#ffffff',
-    height: 750,
-    padding: 5
+    backgroundColor: 'white',
+    maxHeight: '95%',
+    padding: 5,
+    borderRadius: 5
   },
   SubCard: {
     margin: 5,
@@ -129,7 +131,6 @@ export default StyleSheet.create({
     justifyContent: "center"
   },
   GroupMultButton: {
-    flex: 1,
     flexDirection: "row",
     alignSelf: 'center',
     margin: 'auto',
@@ -168,10 +169,10 @@ export default StyleSheet.create({
   MultiTextView: {
     flexDirection: "row",
     justifyContent: 'space-evenly',
-    marginBottom: 20
+    marginBottom: 40
   },
   CardCells: {
-    height: '20%',
+    maxHeight: '20%',
     flexDirection: 'row',
     // backgroundColor: '#00b1c8',
     // backgroundColor: '#3d7d4d',
@@ -213,19 +214,16 @@ export default StyleSheet.create({
     width: 'auto',
     height: 300
   },
-  TextGeral: {
-
+  MegaButton: {
+    flex: 1,
+    margin: 5,
+    // justifyContent: 'center',
+    alignContent: 'center',
+    height: 'auto'
   },
-  // ------------------------------------------------------------------------------------ EXCLUIR
-  groupButton2: {
-    // flex: 1,
-    borderRadius: 0,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: '#0000FF',
-    borderRadius: 5,
-    // marginTop: 2,
-    // padding: 10,
+  MegaButtonText: {
+    marginTop: 50,
+    fontSize: 20,
+    color: 'white'
   },
 });

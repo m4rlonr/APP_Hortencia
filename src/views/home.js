@@ -193,9 +193,9 @@ export default function HomeScreen() {
   } else {
     {/* -------------------------------------------------------------------------------------NOVO */ }
     return (
-      <ScrollView style={styles.Body}>
-        <Card style={styles.MainCard}>
-          <ScrollView >
+      <View style={styles.Body}>
+        <View style={styles.MainCard}>
+          <ScrollView>
             {numberDevices === 0 ? (
               <Card style={styles.SubCard}>
                 <Card.Content>
@@ -215,8 +215,7 @@ export default function HomeScreen() {
 
             ))}
           </ScrollView>
-        </Card>
-
+        </View>
         {renderApagar()}
         {/* -------------------------------------------------------------------------------------NOVO */}
         <Portal>
@@ -294,7 +293,7 @@ export default function HomeScreen() {
             </Snackbar>
           </Dialog>
         </Portal>
-      </ScrollView>
+      </View >
     );
   }
 };
